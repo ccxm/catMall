@@ -1,13 +1,14 @@
 <template>
   <div class="money" :class="size">
     <span class="money-icon">￥</span>
-    <span class="money-text">{{money}}</span>
+    <span class="money-text">{{money | formatMoney}}</span>
   </div>
 </template>
 
 <script>
     export default {
-        name: 'money'
+        name: 'money',
+        props: ['money','size']
     }
 </script>
 
@@ -16,14 +17,15 @@
     display: flex;
     align-items: flex-end;
     
-    text {
+    span {
       color: #DD524D;
     }
   
     .money-icon {
-      font-size: 24px;
-      line-height: 24px;
+      font-size: 20px;
+      line-height: 20px;
       padding-bottom: 2px;
+      margin-right: -5px;
     }
   
     .money-text {
@@ -34,17 +36,7 @@
   
   .md {
     .money-icon {
-      font-size: 24px;
-    }
-  
-    .money-text {
-      font-size: 36px;
-    }
-  }
-  
-  .sm {
-    .money-icon {
-      font-size: 22px;
+      font-size: 18px;
     }
   
     .money-text {
@@ -52,14 +44,24 @@
     }
   }
   
-  .xs {
+  .sm {
     .money-icon {
-      font-size: 20px;
-      line-height: 20px;
+      font-size: 16px;
     }
   
     .money-text {
-      font-size: 26px;
+      font-size: 28px;
+    }
+  }
+  
+  .xs {
+    .money-icon {
+      font-size: 14px;
+      line-height: 14px;
+    }
+  
+    .money-text {
+      font-size: 24px;
     }
   }
   

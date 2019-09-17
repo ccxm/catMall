@@ -52,7 +52,7 @@
     name: 'login',
     data () {
       return {
-        dialogVisible: true,
+        dialogVisible: this.showDialog,
         isShowPwd: false,    // 是否显示密码
         errTip: [false,false,false],         // 错误提示
         input: {
@@ -62,6 +62,7 @@
         }
       }
     },
+    props: ['showDialog','isLogin'],
     watch: {
       // 清除出错的提示
       'input.userName': function () {
@@ -72,9 +73,18 @@
       },
       'input.repeatPwd': function () {
         this.$set(this.errTip,2,false)
+      },
+      showDialog: function (val) {
+        if(val) {
+          this.dialogVisible = val
+        }
+      },
+      dialogVisible: function (val) {
+        if(!val) {
+          this.$emit('onclosemodal')
+        }
       }
     },
-    props: ['isLogin'],
     mounted() {
       let i = 0
       // setInterval(()=>{
@@ -160,6 +170,4 @@
     }
     
   }
-
-
 </style>
